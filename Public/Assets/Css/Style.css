@@ -1,0 +1,47 @@
+/* Public/Assets/Css/Style.css */
+
+/* Import des typographies depuis Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Tenor+Sans&display=swap');
+
+/* Variables CSS reprenant ta charte graphique CafThé */
+:root {
+    --bg-dark: #1A1A1A;     /* Fond principal noir ébène */
+    --bg-sidebar: #222222;  /* Fond légèrement plus clair pour le menu */
+    --text-light: #F5F5F0;  /* Blanc crème pour les textes */
+    --gold: #C5A059;        /* Or mat pour les titres et accents */
+    --green: #4A5D4E;       /* Vert forêt (ex: pour le bouton "Encaisser") */
+}
+
+/* Reset de base */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    margin: 0;
+    padding: 0;
+    display: flex; /* Active le mode Flexbox pour aligner le menu et le contenu */
+    min-height: 100vh;
+}
+
+/* Base de ton menu latéral (Sidebar) visible sur tes maquettes */
+.sidebar {
+    width: 250px;
+    background-color: var(--bg-sidebar);
+    padding: 20px 0;
+    border-right: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar h2 {
+    font-family: 'Tenor Sans', sans-serif;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Conteneur principal (à droite du menu) */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
+}
