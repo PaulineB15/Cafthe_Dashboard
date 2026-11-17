@@ -5,20 +5,49 @@ class DashboardController
 {
     public function index(): void 
     {
-        // Récupère la connexion à la BDD (depuis le fichier Config)
+        // 1. Récupère la connexion à la BDD
         $config = require __DIR__ . '/../../Config/Database.php';
         $database = new Database($config);
         $pdo = $database->getConnection();
 
-        // 2. On crée le Repository en lui passant la connexion PDO
-        $employeRepo = new EmployeRepository($pdo);
+        // 2. Calcul du Chiffre d'affaires total
+        $stmtCA = $pdo->query("SELECT SUM(MONTANT_TOTAL) as total FROM commande");
+        $caTotal = $stmtCA->fetch()['total'] ?? 0;
 
-        // 3. On lui demande de trouver tous les employés
-        $employes = $employeRepo->findAll();
+        // 3. Commandes à traiter (Statut "En attente" ou "En cours")
+        $stmtCmd = $pdo->query("SELECT COUNT(*) as nb FROM commande WHERE STATUT_COMMANDE IN ('En attente', 'En cours')");
+        $nbCommandes = $stmtCmd->fetch()['nb'] ?? 0;
 
-        // 4. On envoie la liste à la Vue
+        // 4. Panier Moyen
+        $stmtPanier = $pdo->query("SELECT AVG(MONTANT_TOTAL) as moyenne FROM commande");
+        $panierMoyen = $stmtPanier->fetch()['moyenne'] ?? 0;
+
+        // 5. Nombre total de clients
+        $stmtClients = $pdo->query("SELECT COUNT(*) as nb FROM client");
+        $nbClients = $stmtClients->fetch()['nb'] ?? 0;
+
+        // 6. Alertes Stock (Produits actifs dont le stock est < 15)
+        $stmtStock = $pdo->query("SELECT NOM_PRODUIT, STOCK FROM produit WHERE STOCK < 15 AND EST_ACTIF = 1 ORDER BY STOCK ASC");
+        $alertesStock = $stmtStock->fetchAll();
+
+        // 7. Les 5 dernières commandes (avec jointure pour avoir le nom du client)
+        $stmtDernieres = $pdo->query("
+            SELECT c.ID_COMMANDE, cl.NOM_CLIENT, cl.PRENOM_CLIENT, c.MONTANT_TOTAL, c.STATUT_COMMANDE 
+            FROM commande c 
+            JOIN client cl ON c.ID_CLIENT = cl.ID_CLIENT 
+            ORDER BY c.ID_COMMANDE DESC 
+            LIMIT 5
+        ");
+        $dernieresCommandes = $stmtDernieres->fetchAll();
+
+        // 8. On envoie toutes ces données dynamiques à la Vue
         View::render('Dashboard/Accueil', [
-            'employes' => $employes
+            'caTotal'            => $caTotal,
+            'nbCommandes'        => $nbCommandes,
+            'panierMoyen'        => $panierMoyen,
+            'nbClients'          => $nbClients,
+            'alertesStock'       => $alertesStock,
+            'dernieresCommandes' => $dernieresCommandes
         ]);
     }
 }

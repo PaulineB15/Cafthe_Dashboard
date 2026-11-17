@@ -13,16 +13,22 @@ class ProduitController
         // Appelle la classe "ProduitRepository" 
         $produitRepo = new ProduitRepository($pdo);
 
-        // Récupère le catalogue complet des produits
-        $produits = $produitRepo->findAll();
+        // Récupération des filtres de recherche via l'URL (GET)
+        $recherche = trim($_GET['recherche'] ?? '');
+        $categorie = trim($_GET['categorie'] ?? '');
+
+        // Récupère le catalogue complet des produits (avec filtres et tri DESC)
+        $produits = $produitRepo->findAll($recherche, $categorie);
 
         // Envoie des données à la Vue "Produit/Stock"
         View::render('Produit/Stock', [
-            'produits' => $produits
+            'produits' => $produits,
+            'recherche' => $recherche, // Transmis à la vue pour garder la valeur dans l'input
+            'categorie' => $categorie
         ]);
     }
 
-// Affiche la page avec le formulaire HTML (pour le CRUD - ajouter un produit)
+    // Affiche la page avec le formulaire HTML (pour le CRUD - ajouter un produit)
     public function create(): void
     {
         View::render('Produit/Creer');
@@ -31,44 +37,34 @@ class ProduitController
     // Réceptionne les données du formulaire (POST), sauvegarde + redirige
     public function store(): void
     {
-        // Vérifie que le formulaire a bien été envoyé (POST)
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
-            // Récupère les données BRUTES
-            // La fonction trim() - enlève les espaces inutiles
             $nom = trim($_POST['nom'] ?? '');
             $categorie = trim($_POST['categorie'] ?? '');
-            $type = trim($_POST['type'] ?? ''); // AJOUT DU TYPE
+            $type = trim($_POST['type'] ?? ''); 
             $typeVente = trim($_POST['type_vente'] ?? '');
             $description = trim($_POST['description'] ?? '');
             $stock = $_POST['stock'] ?? '';
             $prixHt = $_POST['prix_ht'] ?? '';
             $tva = $_POST['tva'] ?? '';
-            // L'image est facultative. Si c'est vide, on met strictement "null"
+            
             $images = trim($_POST['images'] ?? '');
             $images = $images === '' ? null : $images;
 
-            // VALIDATION SERVEUR (Comme demandé par ton formateur)
-            // On vérifie que les champs obligatoires ne sont pas vides
             if (empty($nom) || empty($categorie) || empty($type) || empty($typeVente) || empty($description) || $stock === '' || $prixHt === '' || $tva === '') {
-                // Pour l'instant, on fait une erreur simple. 
-                // Plus tard, on pourra rediriger vers le formulaire avec un joli message d'erreur.
                 die("Erreur : Tous les champs sont obligatoires. Veuillez revenir en arrière.");
             }
 
-            // On vérifie que le prix HT et le stock sont bien des nombres
             if (!is_numeric($prixHt) || !is_numeric($stock)) {
                 die("Erreur : Le prix HT et le stock doivent être des valeurs numériques.");
             }
 
-            // Calcul automatique du TTC (Prix HT + (Prix HT * TVA / 100))
             $prixTtc = (float)$prixHt * (1 + ((float)$tva / 100));
 
-            // Prépare nos données validées pour le Repository
             $donnees = [
                 'nom'         => $nom,
                 'categorie'   => $categorie,
-                'type'        => $type, // AJOUT DU TYPE ICI
+                'type'        => $type, 
                 'typeVente'   => $typeVente,
                 'description' => $description,
                 'stock'       => (int) $stock,
@@ -78,26 +74,20 @@ class ProduitController
                 'images'      => $images
             ];
 
-            // Connexion la BDD et appel à la classe "ProduitRepository"
             $config = require __DIR__ . '/../../Config/Database.php';
             $pdo = (new Database($config))->getConnection();
             $repo = new ProduitRepository($pdo);
-            // Sauvegarde à la BDD
-            // On utilise le nouvel outil qu'on a créé tout à l'heure !
+            
             $repo->create($donnees);
 
-            // Redirection après validation (évite les doublons si on rafraîchit la page)
             header('Location: /Cafthe_Dashboard/Public/produits');
             exit;
         }
     }
 
-
-
     // Afficher le formulaire de modification pré-rempli (pour le CRUD - Update un produit)
     public function edit(): void
     {
-        // Vérifie qu'on a bien un ID dans l'URL (ex: ?id=5)
         if (!isset($_GET['id'])) {
             header('Location: /Cafthe_Dashboard/Public/produits');
             exit;
@@ -122,10 +112,9 @@ class ProduitController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
             $id = (int) $_GET['id'];
             
-            // LA MÉTHODE UPDATE DOIT AUSSI RÉCUPÉRER TOUS LES CHAMPS COMME STORE()
             $nom = trim($_POST['nom'] ?? '');
             $categorie = trim($_POST['categorie'] ?? '');
-            $type = trim($_POST['type'] ?? ''); // AJOUT DU TYPE
+            $type = trim($_POST['type'] ?? ''); 
             $typeVente = trim($_POST['type_vente'] ?? '');
             $description = trim($_POST['description'] ?? '');
             $stock = $_POST['stock'] ?? '';
@@ -148,7 +137,7 @@ class ProduitController
             $donnees = [
                 'nom'         => $nom,
                 'categorie'   => $categorie,
-                'type'        => $type, // AJOUT DU TYPE ICI
+                'type'        => $type, 
                 'typeVente'   => $typeVente,
                 'description' => $description,
                 'stock'       => (int) $stock,
@@ -169,11 +158,9 @@ class ProduitController
         }
     }
 
-
-// Supprimer un produit
+    // Supprimer un produit
     public function delete(): void
     {
-        // Vérifie qu'on a bien reçu un ID à supprimer
         if (isset($_GET['id'])) {
             $id = (int) $_GET['id'];
             
@@ -181,13 +168,10 @@ class ProduitController
             $pdo = (new Database($config))->getConnection();
             $repo = new ProduitRepository($pdo);
             
-            // On appelle notre nouvel outil de suppression
             $repo->delete($id);
         }
 
-        // Redirige vers le tableau des stocks
         header('Location: /Cafthe_Dashboard/Public/produits');
         exit;
     }
-
 }

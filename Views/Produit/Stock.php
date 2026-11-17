@@ -4,6 +4,32 @@
     <a href="/Cafthe_Dashboard/Public/produits/creer" style="background-color: var(--green); color: white; padding: 10px 20px; text-decoration: none; border-radius: 4px; font-weight: bold;">+ AJOUTER UN PRODUIT</a>
 </div>
 
+<!-- BARRE DE RECHERCHE ET FILTRES AVANCÉS -->
+<form method="GET" action="" style="background-color: var(--bg-sidebar); padding: 15px; border-radius: 8px; margin-bottom: 20px; display: flex; gap: 15px; align-items: flex-end;">
+    
+    <div style="flex: 2;">
+        <label style="display: block; margin-bottom: 5px; color: gray; font-size: 0.9em;">Rechercher (Nom ou Réf)</label>
+        <input type="text" name="recherche" value="<?= htmlspecialchars($recherche ?? '') ?>" placeholder="Ex: Café, REF-5..." style="width: 100%; padding: 8px; box-sizing: border-box; background-color: #333; color: white; border: 1px solid #555; border-radius: 4px;">
+    </div>
+
+    <div style="flex: 1;">
+        <label style="display: block; margin-bottom: 5px; color: gray; font-size: 0.9em;">Catégorie</label>
+        <select name="categorie" style="width: 100%; padding: 8px; box-sizing: border-box; background-color: #333; color: white; border: 1px solid #555; border-radius: 4px;">
+            <option value="">Toutes les catégories</option>
+            <option value="Café" <?= (isset($categorie) && $categorie === 'Café') ? 'selected' : '' ?>>Café</option>
+            <option value="Thé" <?= (isset($categorie) && $categorie === 'Thé') ? 'selected' : '' ?>>Thé</option>
+            <option value="Accessoire" <?= (isset($categorie) && $categorie === 'Accessoire') ? 'selected' : '' ?>>Accessoire</option>
+            <option value="Coffret" <?= (isset($categorie) && $categorie === 'Coffret') ? 'selected' : '' ?>>Coffret</option>
+        </select>
+    </div>
+
+    <div>
+        <button type="submit" style="background-color: var(--gold); color: black; padding: 9px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;"><i class="fa-solid fa-magnifying-glass"></i> Filtrer</button>
+        <a href="/Cafthe_Dashboard/Public/produits" style="display: inline-block; margin-left: 10px; color: gray; text-decoration: none; font-size: 0.9em;">Réinitialiser</a>
+    </div>
+
+</form>
+
 <table style="width: 100%; border-collapse: collapse; text-align: left; color: var(--text-light); font-size: 0.8em;">
     <thead style="border-bottom: 1px solid var(--gold); color: var(--gold);">
         <tr>
