@@ -6,6 +6,7 @@ class Produit
     private ?int $id;
     private string $nom;
     private string $categorie;
+    private ?string $type; // AJOUTÉ : Le type (Grains, Moulu, Noir, Vert, etc.)
     private ?string $typeVente;
     private ?string $description;
     private int $stock;
@@ -18,7 +19,8 @@ class Produit
     public function __construct(
         ?int $id, 
         string $nom, 
-        string $categorie, 
+        string $categorie,
+        ?string $type, 
         ?string $typeVente, 
         ?string $description, 
         int $stock, 
@@ -31,6 +33,7 @@ class Produit
         $this->id = $id;
         $this->nom = $nom;
         $this->categorie = $categorie;
+        $this->type = $type;
         $this->typeVente = $typeVente;
         $this->description = $description;
         $this->stock = $stock;
@@ -45,6 +48,7 @@ class Produit
     public function getId(): ?int { return $this->id; }
     public function getNom(): string { return $this->nom; }
     public function getCategorie(): string { return $this->categorie; }
+    public function getType(): ?string { return $this->type; }
     public function getTypeVente(): ?string { return $this->typeVente; }
     public function getDescription(): ?string { return $this->description; }
     public function getStock(): int { return $this->stock; }

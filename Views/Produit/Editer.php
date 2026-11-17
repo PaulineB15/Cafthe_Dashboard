@@ -15,6 +15,7 @@
     </div>
 
     <!-- Catégorie et Type de vente (Côte à côte) -->
+    <!-- Catégorie, Type de produit et Type de vente (Côte à côte) -->
     <div style="margin-bottom: 15px; display: flex; gap: 15px;">
         <div style="flex: 1;">
             <label style="display: block; margin-bottom: 5px;">Catégorie *</label>
@@ -23,6 +24,17 @@
                 <option value="Thé" <?= $produit->getCategorie() === 'Thé' ? 'selected' : '' ?>>Thé</option>
                 <option value="Accessoire" <?= $produit->getCategorie() === 'Accessoire' ? 'selected' : '' ?>>Accessoire</option>
                 <option value="Coffret" <?= $produit->getCategorie() === 'Coffret' ? 'selected' : '' ?>>Coffret</option>
+            </select>
+        </div>
+        <div style="flex: 1;">
+            <label style="display: block; margin-bottom: 5px;">Type *</label>
+            <select name="type" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+                <option value="Grains" <?= $produit->getType() === 'Grains' ? 'selected' : '' ?>>Grains</option>
+                <option value="Moulu" <?= $produit->getType() === 'Moulu' ? 'selected' : '' ?>>Moulu</option>
+                <option value="Noir" <?= $produit->getType() === 'Noir' ? 'selected' : '' ?>>Thé Noir</option>
+                <option value="Vert" <?= $produit->getType() === 'Vert' ? 'selected' : '' ?>>Thé Vert</option>
+                <option value="Infusion" <?= $produit->getType() === 'Infusion' ? 'selected' : '' ?>>Infusion</option>
+                <option value="N/A" <?= $produit->getType() === 'N/A' || $produit->getType() === null || $produit->getType() === '' ? 'selected' : '' ?>>Autre / N/A</option>
             </select>
         </div>
         <div style="flex: 1;">

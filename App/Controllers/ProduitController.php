@@ -1,6 +1,5 @@
 <?php
 
-
 class ProduitController 
 {
     // Affiche le tableau des stocks (pour le CRUD - Read les produits)
@@ -39,6 +38,7 @@ class ProduitController
             // La fonction trim() - enlève les espaces inutiles
             $nom = trim($_POST['nom'] ?? '');
             $categorie = trim($_POST['categorie'] ?? '');
+            $type = trim($_POST['type'] ?? ''); // AJOUT DU TYPE
             $typeVente = trim($_POST['type_vente'] ?? '');
             $description = trim($_POST['description'] ?? '');
             $stock = $_POST['stock'] ?? '';
@@ -50,15 +50,15 @@ class ProduitController
 
             // VALIDATION SERVEUR (Comme demandé par ton formateur)
             // On vérifie que les champs obligatoires ne sont pas vides
-            if (empty($nom) || empty($categorie) || empty($typeVente) || empty($description) || $stock === '' || $prixHt === '' || $tva === '') {
+            if (empty($nom) || empty($categorie) || empty($type) || empty($typeVente) || empty($description) || $stock === '' || $prixHt === '' || $tva === '') {
                 // Pour l'instant, on fait une erreur simple. 
                 // Plus tard, on pourra rediriger vers le formulaire avec un joli message d'erreur.
                 die("Erreur : Tous les champs sont obligatoires. Veuillez revenir en arrière.");
             }
 
-            // On vérifie que le prix et le stock sont bien des nombres
-            if (!is_numeric($prix) || !is_numeric($stock)) {
-                die("Erreur : Le prix et le stock doivent être des valeurs numériques.");
+            // On vérifie que le prix HT et le stock sont bien des nombres
+            if (!is_numeric($prixHt) || !is_numeric($stock)) {
+                die("Erreur : Le prix HT et le stock doivent être des valeurs numériques.");
             }
 
             // Calcul automatique du TTC (Prix HT + (Prix HT * TVA / 100))
@@ -68,6 +68,7 @@ class ProduitController
             $donnees = [
                 'nom'         => $nom,
                 'categorie'   => $categorie,
+                'type'        => $type, // AJOUT DU TYPE ICI
                 'typeVente'   => $typeVente,
                 'description' => $description,
                 'stock'       => (int) $stock,
@@ -121,20 +122,40 @@ class ProduitController
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
             $id = (int) $_GET['id'];
             
+            // LA MÉTHODE UPDATE DOIT AUSSI RÉCUPÉRER TOUS LES CHAMPS COMME STORE()
             $nom = trim($_POST['nom'] ?? '');
             $categorie = trim($_POST['categorie'] ?? '');
-            $prix = $_POST['prix'] ?? '';
+            $type = trim($_POST['type'] ?? ''); // AJOUT DU TYPE
+            $typeVente = trim($_POST['type_vente'] ?? '');
+            $description = trim($_POST['description'] ?? '');
             $stock = $_POST['stock'] ?? '';
+            $prixHt = $_POST['prix_ht'] ?? '';
+            $tva = $_POST['tva'] ?? '';
+            
+            $images = trim($_POST['images'] ?? '');
+            $images = $images === '' ? null : $images;
 
-            if (empty($nom) || empty($categorie) || $prix === '' || $stock === '') {
+            if (empty($nom) || empty($categorie) || empty($type) || empty($typeVente) || empty($description) || $stock === '' || $prixHt === '' || $tva === '') {
                 die("Erreur : Tous les champs sont obligatoires.");
             }
 
+            if (!is_numeric($prixHt) || !is_numeric($stock)) {
+                die("Erreur : Le prix HT et le stock doivent être des valeurs numériques.");
+            }
+
+            $prixTtc = (float)$prixHt * (1 + ((float)$tva / 100));
+
             $donnees = [
-                'nom'       => $nom,
-                'categorie' => $categorie,
-                'prix'      => (float) $prix,
-                'stock'     => (int) $stock
+                'nom'         => $nom,
+                'categorie'   => $categorie,
+                'type'        => $type, // AJOUT DU TYPE ICI
+                'typeVente'   => $typeVente,
+                'description' => $description,
+                'stock'       => (int) $stock,
+                'prixHt'      => (float) $prixHt,
+                'tva'         => (float) $tva,
+                'prixTtc'     => $prixTtc,
+                'images'      => $images
             ];
 
             $config = require __DIR__ . '/../../Config/Database.php';

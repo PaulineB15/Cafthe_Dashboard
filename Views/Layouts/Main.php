@@ -17,7 +17,7 @@
         
         <!-- En-tête du menu (Logo + Rôle) -->
         <div class="logo-container" style="text-align: center; margin-bottom: 40px;">
-            <!-- Remplace "logo.png" par le vrai nom de ton fichier image (png ou svg) -->
+            <!-- Remplace "logo.webp" par le vrai nom de ton fichier image -->
             <img src="/Cafthe_Dashboard/Public/Assets/Images/logo.webp" alt="Logo CafThé" style="max-width: 180px; height: auto;">
             <p style="color: gray; font-size: 0.9em; margin-top: 10px;">Espace Vendeur</p>
         </div>

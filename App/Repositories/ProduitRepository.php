@@ -23,17 +23,18 @@ class ProduitRepository
         
         foreach ($produitsData as $data) {
             $produits[] = new Produit(
-                $data['ID_PRODUIT'],
-                $data['NOM_PRODUIT'],
-                $data['CATEGORIE'],
-                $data['TYPE_VENTE'],
-                $data['DESCRIPTION'],
-                (int)$data['STOCK'],
-                $data['PRIX_HT'] !== null ? (float)$data['PRIX_HT'] : null,
-                $data['TVA'] !== null ? (float)$data['TVA'] : null,
-                (float)$data['PRIX_TTC'],
-                $data['IMAGES'],
-                (int)$data['EST_ACTIF']
+            $data['ID_PRODUIT'],
+            $data['NOM_PRODUIT'],
+            $data['CATEGORIE'],
+            $data['TYPE'],
+            $data['TYPE_VENTE'],
+            $data['DESCRIPTION'],
+            (int)$data['STOCK'],
+            $data['PRIX_HT'] !== null ? (float)$data['PRIX_HT'] : null,
+            $data['TVA'] !== null ? (float)$data['TVA'] : null,
+            (float)$data['PRIX_TTC'],
+            $data['IMAGES'],
+            (int)$data['EST_ACTIF']
             );
         }
         
@@ -46,8 +47,8 @@ class ProduitRepository
     {   
         // Protection contre injections SQL
         // Prépare la requête SQL avec des "marqueurs" (:nom, :categorie...)
-        $sql = "INSERT INTO produit (NOM_PRODUIT, CATEGORIE, TYPE_VENTE, DESCRIPTION, STOCK, PRIX_HT, TVA, PRIX_TTC, IMAGES, EST_ACTIF) 
-                VALUES (:nom, :categorie, :typeVente, :description, :stock, :prixHt, :tva, :prixTtc, :images, 1)";
+        $sql = "INSERT INTO produit (NOM_PRODUIT, CATEGORIE, TYPE, TYPE_VENTE, DESCRIPTION, STOCK, PRIX_HT, TVA, PRIX_TTC, IMAGES, EST_ACTIF) 
+                VALUES (:nom, :categorie, :type, :typeVente, :description, :stock, :prixHt, :tva, :prixTtc, :images, 1)";
 
         // prepare() - Méthode prend en paramètre la requête SQL avec les marqueurs (préfixés par : ), identifiant les données dynamiques.
         $stmt = $this->db->prepare($sql);
@@ -56,6 +57,7 @@ class ProduitRepository
         $stmt->execute([
             'nom'         => $donnees['nom'],
             'categorie'   => $donnees['categorie'],
+            'type'        => $donnees['type'], // AJOUTÉ : On récupère le type
             'typeVente'   => $donnees['typeVente'],
             'description' => $donnees['description'],
             'stock'       => $donnees['stock'],
@@ -87,6 +89,7 @@ class ProduitRepository
             $data['ID_PRODUIT'],
             $data['NOM_PRODUIT'],
             $data['CATEGORIE'],
+            $data['TYPE'], // AJOUTÉ ICI POUR CORRIGER L'ERREUR
             $data['TYPE_VENTE'],
             $data['DESCRIPTION'],
             (int)$data['STOCK'],
@@ -102,7 +105,7 @@ class ProduitRepository
     public function update(int $id, array $donnees): void
     {
         $sql = "UPDATE produit 
-                SET NOM_PRODUIT = :nom, CATEGORIE = :categorie, TYPE_VENTE = :typeVente, 
+                SET NOM_PRODUIT = :nom, CATEGORIE = :categorie, TYPE = :type,  TYPE_VENTE = :typeVente, 
                     DESCRIPTION = :description, STOCK = :stock, PRIX_HT = :prixHt, 
                     TVA = :tva, PRIX_TTC = :prixTtc, IMAGES = :images
                 WHERE ID_PRODUIT = :id";
@@ -111,6 +114,7 @@ class ProduitRepository
         $stmt->execute([
             'nom'         => $donnees['nom'],
             'categorie'   => $donnees['categorie'],
+            'type'        => $donnees['type'], // AJOUTÉ
             'typeVente'   => $donnees['typeVente'],
             'description' => $donnees['description'],
             'stock'       => $donnees['stock'],

@@ -13,6 +13,7 @@
     </div>
     
     <!-- Catégorie et Type de vente (Côte à côte) -->
+    <!-- Catégorie, Type de produit et Type de vente (Côte à côte) -->
     <div style="margin-bottom: 15px; display: flex; gap: 15px;">
         <div style="flex: 1;">
             <label style="display: block; margin-bottom: 5px;">Catégorie *</label>
@@ -21,6 +22,17 @@
                 <option value="Thé">Thé</option>
                 <option value="Accessoire">Accessoire</option>
                 <option value="Coffret">Coffret</option>
+            </select>
+        </div>
+        <div style="flex: 1;">
+            <label style="display: block; margin-bottom: 5px;">Type *</label>
+            <select name="type" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+                <option value="Grains">Grains</option>
+                <option value="Moulu">Moulu</option>
+                <option value="Noir">Thé Noir</option>
+                <option value="Vert">Thé Vert</option>
+                <option value="Infusion">Infusion</option>
+                <option value="N/A">Autre / N/A</option>
             </select>
         </div>
         <div style="flex: 1;">
