@@ -11,6 +11,7 @@ class DashboardController
         $pdo = $database->getConnection();
 
         // 2. Calcul du Chiffre d'affaires total
+        // Requête SQL
         $stmtCA = $pdo->query("SELECT SUM(MONTANT_TOTAL) as total FROM commande");
         $caTotal = $stmtCA->fetch()['total'] ?? 0;
 
