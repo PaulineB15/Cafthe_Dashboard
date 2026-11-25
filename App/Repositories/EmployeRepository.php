@@ -1,7 +1,6 @@
-
-// Fichier = lien entre l'objet Employe.php et la BDD
-
 <?php
+
+// Classe = lien entre l'objet Employe.php et la BDD
 
 class EmployeRepository
 {
@@ -64,5 +63,56 @@ class EmployeRepository
     }
 
 
+
+    // Trouver un employé par son ID (pour la page "Mon Profil")
+    public function findById(int $id): ?Employe
+    {
+        $stmt = $this->db->prepare("SELECT * FROM employe WHERE ID_EMPLOYE = :id LIMIT 1");
+        $stmt->execute(['id' => $id]);
+        $data = $stmt->fetch();
+
+        if (!$data) {
+            return null;
+        }
+
+        return new Employe(
+            (int)$data['ID_EMPLOYE'],
+            $data['NOM_EMPLOYE'],
+            $data['PRENOM_EMPLOYE'],
+            $data['EMAIL_EMPLOYE'],
+            $data['ROLE'],
+            $data['MDP_EMPLOYE'] ?? null
+        );
+    }
+
+    // Mettre à jour les informations personnelles d'un employé
+    public function updateProfil(int $id, string $nom, string $prenom, string $email): void
+    {
+        $sql = "UPDATE employe
+                SET NOM_EMPLOYE = :nom, PRENOM_EMPLOYE = :prenom, EMAIL_EMPLOYE = :email
+                WHERE ID_EMPLOYE = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'nom'    => $nom,
+            'prenom' => $prenom,
+            'email'  => $email,
+            'id'     => $id
+        ]);
+    }
+
+    // Mettre à jour le mot de passe haché d'un employé
+    public function updateMotDePasse(int $id, string $nouveauHash): void
+    {
+        $sql = "UPDATE employe
+                SET MDP_EMPLOYE = :mdp
+                WHERE ID_EMPLOYE = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'mdp' => $nouveauHash,
+            'id'  => $id
+        ]);
+    }
 
 }

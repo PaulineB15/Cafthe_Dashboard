@@ -25,6 +25,18 @@ if (isset($_SESSION['employe'])) {
     $_SESSION['dernier_acces'] = time();
 }
 
+// Protection des routes : redirection vers /login si non connecté
+$cheminActuel = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH) ?: '/';
+$cheminActuel = str_replace('/Cafthe_Dashboard/Public', '', $cheminActuel);
+if ($cheminActuel === '') {
+    $cheminActuel = '/';
+}
+
+if (!isset($_SESSION['employe']) && $cheminActuel !== '/login') {
+    header('Location: /Cafthe_Dashboard/Public/login');
+    exit;
+}
+
 // Outils de base
 require_once __DIR__ . '/../App/Core/Router.php';
 require_once __DIR__ . '/../App/Core/View.php';
@@ -39,6 +51,8 @@ require_once __DIR__ . '/../App/Repositories/ProduitRepository.php';
 // Contrôleurs
 require_once __DIR__ . '/../App/Controllers/DashboardController.php';
 require_once __DIR__ . '/../App/Controllers/ProduitController.php';
+require_once __DIR__ . '/../App/Controllers/AuthController.php';
+require_once __DIR__ . '/../App/Controllers/ProfilController.php';
 
 
 // Initialisation et exécution du Routeur
@@ -64,6 +78,16 @@ $router->post('/produits/modifier', [ProduitController::class, 'update']);
 
 // Route pour la suppression (produits)
 $router->get('/produits/supprimer', [ProduitController::class, 'delete']);
+
+// Routes login (connexion / déconnexion)
+$router->get('/login', [AuthController::class, 'login']);
+$router->post('/login', [AuthController::class, 'authenticate']);
+$router->get('/logout', [AuthController::class, 'logout']);
+
+// Routes pour "Mon Profil"
+$router->get('/profil', [ProfilController::class, 'index']);
+$router->post('/profil/infos', [ProfilController::class, 'updateInfos']);
+$router->post('/profil/mot-de-passe', [ProfilController::class, 'updatePassword']);
 
 // Lance le moteur du Routeur en lui donnant l'URL demandée par le navigateur
 // $_SERVER - Superglobale qui contient l'URL demandée par le navigateur

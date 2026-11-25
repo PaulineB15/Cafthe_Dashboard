@@ -1,5 +1,7 @@
+
 <?php
 
+// Modèle pour Employée (objet = informations + règle d'accès) 
 
 class Employe
 {
@@ -31,7 +33,7 @@ class Employe
     public function getId(): ?int { return $this->id; }
     public function getNom(): string { return $this->nom; }
     public function getPrenom(): string { return $this->prenom; }
-    public function getemail(): string { return $this->email; }
+    public function getEmail(): string { return $this->email; }
     public function getRole(): string { return $this->role; }
     public function getMotDePasseHash(): ?string { return $this->motDePasseHash; }
 }

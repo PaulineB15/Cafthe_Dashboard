@@ -1,5 +1,6 @@
 <?php
-// Ce fichier est l'outil technique qui va fusionner le contenu avec le design global
+
+// Fichier = charge le HTML et affiche le design
 
 class View
 {
