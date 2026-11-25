@@ -137,11 +137,12 @@ class ProfilController
             return;
         }
 
-        if (strlen($nouveauMotDePasse) < 8) {
+        $erreurMdp = $this->validerMotDePasse($nouveauMotDePasse);
+        if ($erreurMdp !== null) {
             $this->afficherVueProfil(
                 $employe,
                 null,
-                'Le nouveau mot de passe doit contenir au moins 8 caractères.'
+                $erreurMdp
             );
             return;
         }
@@ -164,5 +165,18 @@ class ProfilController
             'Votre mot de passe a bien été modifié.',
             null
         );
+    }
+
+    private function validerMotDePasse(string $motDePasse): ?string
+    {
+        if (mb_strlen($motDePasse) < 16) {
+            return 'Le mot de passe doit contenir au moins 16 caractères.';
+        }
+
+        if (!preg_match('/[^a-zA-Z0-9]/', $motDePasse)) {
+            return 'Le mot de passe doit contenir au moins un caractère spécial.';
+        }
+
+        return null;
     }
 }

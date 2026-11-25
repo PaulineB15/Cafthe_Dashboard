@@ -1,4 +1,6 @@
-<!-- Views/Profil/Index.php -->
+
+// Affichage de la ma page " Mon Profil"
+
 <div style="margin-bottom: 20px;">
     <h1 style="color: var(--text-light); font-family: 'Tenor Sans', sans-serif;">MON PROFIL</h1>
     <p style="color: gray; margin: 5px 0 0 0;">Rôle actuel : <strong style="color: var(--gold);"><?= htmlspecialchars($employe->getRole(), ENT_QUOTES, 'UTF-8') ?></strong></p>
@@ -52,7 +54,7 @@
         </div>
 
         <div style="margin-bottom: 15px;">
-            <label for="nouveau_mot_de_passe" style="display: block; margin-bottom: 6px; font-size: 0.9em;">Nouveau mot de passe (8 caractères min.) *</label>
+            <label for="nouveau_mot_de_passe" style="display: block; margin-bottom: 6px; font-size: 0.9em;">Nouveau mot de passe (16 car. min. + caractères spéciaux) *</label>
             <input type="password" id="nouveau_mot_de_passe" name="nouveau_mot_de_passe" required style="width: 100%; padding: 9px; box-sizing: border-box; background-color: #333; color: white; border: 1px solid #555; border-radius: 4px;">
         </div>
 

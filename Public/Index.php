@@ -53,6 +53,7 @@ require_once __DIR__ . '/../App/Controllers/DashboardController.php';
 require_once __DIR__ . '/../App/Controllers/ProduitController.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/ProfilController.php';
+require_once __DIR__ . '/../App/Controllers/UtilisateurController.php';
 
 
 // Initialisation et exécution du Routeur
@@ -88,6 +89,13 @@ $router->get('/logout', [AuthController::class, 'logout']);
 $router->get('/profil', [ProfilController::class, 'index']);
 $router->post('/profil/infos', [ProfilController::class, 'updateInfos']);
 $router->post('/profil/mot-de-passe', [ProfilController::class, 'updatePassword']);
+
+// Routes pour "Gestion des utilisateurs"
+$router->get('/utilisateurs', [UtilisateurController::class, 'index']);
+$router->post('/utilisateurs/creer', [UtilisateurController::class, 'store']);
+$router->get('/utilisateurs/editer', [UtilisateurController::class, 'edit']);
+$router->post('/utilisateurs/modifier', [UtilisateurController::class, 'update']);
+$router->get('/utilisateurs/supprimer', [UtilisateurController::class, 'delete']);
 
 // Lance le moteur du Routeur en lui donnant l'URL demandée par le navigateur
 // $_SERVER - Superglobale qui contient l'URL demandée par le navigateur

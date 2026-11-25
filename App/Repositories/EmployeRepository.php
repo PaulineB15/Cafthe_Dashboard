@@ -115,4 +115,61 @@ class EmployeRepository
         ]);
     }
 
+    // Créer un nouvel employé (avec mot de passe déjà haché en bcrypt)
+    public function create(string $nom, string $prenom, string $email, string $role, string $motDePasseHash): void
+    {
+        $sql = "INSERT INTO employe (NOM_EMPLOYE, PRENOM_EMPLOYE, EMAIL_EMPLOYE, ROLE, MDP_EMPLOYE)
+                VALUES (:nom, :prenom, :email, :role, :mdp)";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'nom'    => $nom,
+            'prenom' => $prenom,
+            'email'  => $email,
+            'role'   => $role,
+            'mdp'    => $motDePasseHash
+        ]);
+    }
+
+    // Mettre à jour les informations (et optionnellement le mot de passe haché) d'un employé
+    public function updateCompte(int $id, string $nom, string $prenom, string $email, string $role, ?string $nouveauHash = null): void
+    {
+        if ($nouveauHash !== null) {
+            $sql = "UPDATE employe
+                    SET NOM_EMPLOYE = :nom, PRENOM_EMPLOYE = :prenom, EMAIL_EMPLOYE = :email, ROLE = :role, MDP_EMPLOYE = :mdp
+                    WHERE ID_EMPLOYE = :id";
+
+            $stmt = $this->db->prepare($sql);
+            $stmt->execute([
+                'nom'    => $nom,
+                'prenom' => $prenom,
+                'email'  => $email,
+                'role'   => $role,
+                'mdp'    => $nouveauHash,
+                'id'     => $id
+            ]);
+            return;
+        }
+
+        $sql = "UPDATE employe
+                SET NOM_EMPLOYE = :nom, PRENOM_EMPLOYE = :prenom, EMAIL_EMPLOYE = :email, ROLE = :role
+                WHERE ID_EMPLOYE = :id";
+
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([
+            'nom'    => $nom,
+            'prenom' => $prenom,
+            'email'  => $email,
+            'role'   => $role,
+            'id'     => $id
+        ]);
+    }
+
+    // Supprimer un compte employé par ID
+    public function deleteById(int $id): void
+    {
+        $stmt = $this->db->prepare("DELETE FROM employe WHERE ID_EMPLOYE = :id");
+        $stmt->execute(['id' => $id]);
+    }
+
 }
