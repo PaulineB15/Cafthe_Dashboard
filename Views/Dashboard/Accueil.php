@@ -87,19 +87,21 @@
         </div>
     </div>
 
-    <!-- Colonne Latérale (Top 10 et Alertes) -->
-    <div style="flex: 1; display: flex; flex-direction: column; gap: 20px;">
-        
-        <!-- Top Produits (Laissé statique pour l'instant) -->
+    <!-- Top Produits (Dynamique) -->
         <div style="background-color: var(--bg-sidebar); padding: 20px; border-radius: 8px;">
             <h3 style="color: var(--gold); margin-top: 0;">TOP PRODUITS</h3>
             <ul style="list-style: none; padding: 0; margin: 0; color: var(--text-light); font-size: 0.9em;">
-                <li style="padding: 8px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
-                    <span>Café Éclat Matinal</span> <strong>26 Ventes</strong>
-                </li>
-                <li style="padding: 8px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
-                    <span>L'éveil du Volcan</span> <strong>18 Ventes</strong>
-                </li>
+                <?php if (empty($topProduits)): ?>
+                    <li style="padding: 8px 0; color: gray;">Aucune vente enregistrée pour le moment.</li>
+                <?php else: ?>
+                    <?php foreach ($topProduits as $top): ?>
+                        <?php $qte = (int)($top['total_ventes'] ?? 0); ?>
+                        <li style="padding: 8px 0; border-bottom: 1px solid #333; display: flex; justify-content: space-between;">
+                            <span><?= htmlspecialchars((string)$top['NOM_PRODUIT'], ENT_QUOTES, 'UTF-8') ?></span>
+                            <strong><?= $qte ?> <?= $qte > 1 ? 'Ventes' : 'Vente' ?></strong>
+                        </li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
         </div>
 

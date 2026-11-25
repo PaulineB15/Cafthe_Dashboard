@@ -41,14 +41,27 @@ class DashboardController
         ");
         $dernieresCommandes = $stmtDernieres->fetchAll();
 
-        // 8. On envoie toutes ces données dynamiques à la Vue
+        // 8. Top 5 produits les plus vendus
+        $stmtTop = $pdo->query("
+            SELECT p.NOM_PRODUIT, COALESCE(SUM(c.QUANTITE_COMMANDEE), 0) AS total_ventes
+            FROM produit p
+            JOIN contenir c ON p.ID_PRODUIT = c.ID_PRODUIT
+            WHERE p.EST_ACTIF = 1
+            GROUP BY p.ID_PRODUIT, p.NOM_PRODUIT
+            ORDER BY total_ventes DESC
+            LIMIT 5
+        ");
+        $topProduits = $stmtTop->fetchAll();
+
+        // 9. On envoie toutes ces données dynamiques à la Vue
         View::render('Dashboard/Accueil', [
             'caTotal'            => $caTotal,
             'nbCommandes'        => $nbCommandes,
             'panierMoyen'        => $panierMoyen,
             'nbClients'          => $nbClients,
             'alertesStock'       => $alertesStock,
-            'dernieresCommandes' => $dernieresCommandes
+            'dernieresCommandes' => $dernieresCommandes,
+            'topProduits'        => $topProduits
         ]);
     }
 }
