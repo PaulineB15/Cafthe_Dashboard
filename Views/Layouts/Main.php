@@ -5,6 +5,7 @@ $isAccueil = ($currentUri === '/Cafthe_Dashboard/Public/' || $currentUri === '/C
 $isStocks = (strpos($currentUri, '/produits') !== false);
 $isProfil = (strpos($currentUri, '/profil') !== false);
 $isUtilisateurs = (strpos($currentUri, '/utilisateurs') !== false);
+$isClients = (strpos($currentUri, '/clients') !== false);
 
 // On récupère les informations de l'employé connecté depuis la session
 $employeConnecte = $_SESSION['employe'] ?? null;
@@ -78,7 +79,7 @@ $roleEmploye = $employeConnecte['role'] ?? 'Vendeur';
 
                 <!-- Lien vers les Clients -->
                 <li style="margin-bottom: 12px;">
-                    <a href="#" class="nav-link">
+                    <a href="/Cafthe_Dashboard/Public/clients" class="nav-link <?= $isClients ? 'active' : '' ?>">
                         <i class="fa-solid fa-users"></i> Clients
                     </a>
                 </li>

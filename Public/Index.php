@@ -46,7 +46,9 @@ require_once __DIR__ . '/../App/Core/Database.php';
 require_once __DIR__ . '/../App/Models/Employe.php'; 
 require_once __DIR__ . '/../App/Repositories/EmployeRepository.php';
 require_once __DIR__ . '/../App/Models/Produit.php'; 
-require_once __DIR__ . '/../App/Repositories/ProduitRepository.php'; 
+require_once __DIR__ . '/../App/Repositories/ProduitRepository.php';
+require_once __DIR__ . '/../App/Models/Client.php';
+require_once __DIR__ . '/../App/Repositories/ClientRepository.php'; 
 
 // Contrôleurs
 require_once __DIR__ . '/../App/Controllers/DashboardController.php';
@@ -54,6 +56,7 @@ require_once __DIR__ . '/../App/Controllers/ProduitController.php';
 require_once __DIR__ . '/../App/Controllers/AuthController.php';
 require_once __DIR__ . '/../App/Controllers/ProfilController.php';
 require_once __DIR__ . '/../App/Controllers/UtilisateurController.php';
+require_once __DIR__ . '/../App/Controllers/ClientController.php';
 
 
 // Initialisation et exécution du Routeur
@@ -96,6 +99,13 @@ $router->post('/utilisateurs/creer', [UtilisateurController::class, 'store']);
 $router->get('/utilisateurs/editer', [UtilisateurController::class, 'edit']);
 $router->post('/utilisateurs/modifier', [UtilisateurController::class, 'update']);
 $router->get('/utilisateurs/supprimer', [UtilisateurController::class, 'delete']);
+
+// Routes pour "Gestion des clients"
+$router->get('/clients', [ClientController::class, 'index']);
+$router->post('/clients/creer', [ClientController::class, 'store']);
+$router->get('/clients/editer', [ClientController::class, 'edit']);
+$router->post('/clients/modifier', [ClientController::class, 'update']);
+$router->get('/clients/details', [ClientController::class, 'details']);
 
 // Lance le moteur du Routeur en lui donnant l'URL demandée par le navigateur
 // $_SERVER - Superglobale qui contient l'URL demandée par le navigateur
