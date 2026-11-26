@@ -1,0 +1,45 @@
+/* Public/Assets/Css/composants/tableaux.css */
+
+.tableau {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+
+.tableau thead {
+    border-bottom: 1px solid var(--gold);
+}
+
+.tableau th,
+.tableau td {
+    padding: 10px;
+}
+
+.tableau tbody tr {
+    border-bottom: 1px solid #333;
+}
+
+.tableau-vide {
+    padding: 12px;
+    color: gray;
+}
+
+.colonne-actions {
+    white-space: nowrap;
+}
+
+/* Variante compacte utilisée sur Stock.php */
+.tableau-compact {
+    font-size: 0.8em;
+}
+
+.tableau-compact thead {
+    color: var(--gold);
+}
+
+.tableau-compact th,
+.tableau-compact td {
+    padding: 8px;
+}

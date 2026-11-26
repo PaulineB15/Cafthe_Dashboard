@@ -1,36 +1,43 @@
 /* Public/Assets/Css/Style.css */
 
-/* Import des typographies depuis Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Tenor+Sans&display=swap');
 
-/* Variables CSS reprenant ta charte graphique CafThé */
+/* Imports des composants communs et styles spécifiques */
+@import url('composants/cartes-grilles.css');
+@import url('composants/boutons-alertes.css');
+@import url('composants/formulaires.css');
+@import url('composants/tableaux.css');
+@import url('pages/login.css');
+@import url('pages/specifiques.css');
+
 :root {
-    --bg-dark: #1A1A1A;     /* Fond principal noir ébène */
-    --bg-sidebar: #222222;  /* Fond légèrement plus clair pour le menu */
-    --text-light: #F5F5F0;  /* Blanc crème pour les textes */
-    --gold: #C5A059;        /* Or mat pour les titres et accents */
-    --green: #4A5D4E;       /* Vert forêt (ex: pour le bouton "Encaisser") */
+    --bg-dark: #1A1A1A;
+    --bg-sidebar: #222222;
+    --text-light: #F5F5F0;
+    --gold: #C5A059;
+    --green: #4A5D4E;
 }
 
-/* Reset de base */
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: var(--bg-dark);
     color: var(--text-light);
     margin: 0;
     padding: 0;
-    display: flex; /* Active le mode Flexbox pour aligner le menu et le contenu */
+    display: flex;
     min-height: 100vh;
 }
 
-/* Base de ton menu latéral (Sidebar) visible sur tes maquettes */
+/* --- MENU LATÉRAL (SIDEBAR) --- */
 .sidebar {
     width: 250px;
     background-color: var(--bg-sidebar);
-    padding: 20px 0;
+    padding: 20px;
     border-right: 1px solid #333;
     display: flex;
     flex-direction: column;
+    position: relative;
+    box-sizing: border-box;
 }
 
 .sidebar h2 {
@@ -40,15 +47,45 @@ body {
     margin-bottom: 40px;
 }
 
-/* Conteneur principal (à droite du menu) */
-.main-content {
-    flex-grow: 1;
-    padding: 30px;
+.logo-container {
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-/* --- MENU DE NAVIGATION LATÉRAL --- */
+.logo-sidebar {
+    max-width: 160px;
+    height: auto;
+}
+
+.sidebar-employe {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 0.95em;
+    margin: 10px 0 2px 0;
+}
+
+.sidebar-role {
+    color: gray;
+    font-size: 0.85em;
+    margin: 0;
+}
+
+.nav-menu {
+    flex-grow: 1;
+}
+
+.nav-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu li {
+    margin-bottom: 12px;
+}
+
 .nav-link {
-    color: var(--text-light, #ccc); /* Couleur texte par défaut */
+    color: var(--text-light, #ccc);
     text-decoration: none;
     display: block;
     padding: 10px;
@@ -59,24 +96,31 @@ body {
 
 .nav-link i {
     width: 25px;
-    color: var(--gold, #d4af37); /* Couleur icône par défaut */
+    color: var(--gold, #d4af37);
     transition: color 0.3s ease;
 }
 
-/* Effet au survol de la souris */
 .nav-link:hover {
     background-color: #333;
     color: var(--gold, #d4af37);
 }
 
-/* Effet quand on est sur la page en question (actif) */
 .nav-link.active {
     background-color: #333;
     color: var(--gold, #d4af37);
     font-weight: bold;
 }
 
-/* Bouton déconnexion spécifique */
+.sidebar-bas {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+.sidebar-bas .nav-link {
+    margin-bottom: 10px;
+}
+
 .logout-link {
     color: #ff4c4c;
     text-decoration: none;
@@ -92,4 +136,10 @@ body {
 .logout-link:hover {
     background-color: #ff4c4c;
     color: white;
+}
+
+/* --- CONTENU PRINCIPAL --- */
+.main-content {
+    flex-grow: 1;
+    padding: 30px;
 }

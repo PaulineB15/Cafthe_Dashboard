@@ -1,32 +1,32 @@
 <!-- Views/Produit/Creer.php -->
-<div style="margin-bottom: 20px;">
-    <h1 style="color: var(--gold); font-family: 'Tenor Sans', sans-serif;">AJOUTER UN PRODUIT</h1>
-    <a href="/Cafthe_Dashboard/Public/produits" style="color: var(--text-light); text-decoration: none;">← Retour au stock</a>
+<div class="entete-page">
+    <h1 class="titre-page-or">AJOUTER UN PRODUIT</h1>
+    <a href="/Cafthe_Dashboard/Public/produits" class="lien-retour">← Retour au stock</a>
 </div>
 
-<form action="/Cafthe_Dashboard/Public/produits/enregistrer" method="POST" style="background-color: var(--bg-sidebar); padding: 30px; border-radius: 8px; max-width: 600px;">
+<form action="/Cafthe_Dashboard/Public/produits/enregistrer" method="POST" class="formulaire-produit">
     
     <!-- Nom -->
-    <div style="margin-bottom: 15px;">
-        <label style="display: block; margin-bottom: 5px;">Nom du produit *</label>
-        <input type="text" name="nom" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+    <div class="groupe-champ">
+        <label class="etiquette">Nom du produit *</label>
+        <input type="text" name="nom" required class="champ-natif">
     </div>
     
     <!-- Catégorie et Type de vente (Côte à côte) -->
     <!-- Catégorie, Type de produit et Type de vente (Côte à côte) -->
-    <div style="margin-bottom: 15px; display: flex; gap: 15px;">
-        <div style="flex: 1;">
-            <label style="display: block; margin-bottom: 5px;">Catégorie *</label>
-            <select name="categorie" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+    <div class="ligne-champs">
+        <div class="col-1">
+            <label class="etiquette">Catégorie *</label>
+            <select name="categorie" required class="champ-natif">
                 <option value="Café">Café</option>
                 <option value="Thé">Thé</option>
                 <option value="Accessoire">Accessoire</option>
                 <option value="Coffret">Coffret</option>
             </select>
         </div>
-        <div style="flex: 1;">
-            <label style="display: block; margin-bottom: 5px;">Type *</label>
-            <select name="type" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <div class="col-1">
+            <label class="etiquette">Type *</label>
+            <select name="type" required class="champ-natif">
                 <option value="Grains">Grains</option>
                 <option value="Moulu">Moulu</option>
                 <option value="Noir">Thé Noir</option>
@@ -35,9 +35,9 @@
                 <option value="N/A">Autre / N/A</option>
             </select>
         </div>
-        <div style="flex: 1;">
-            <label style="display: block; margin-bottom: 5px;">Type de vente *</label>
-            <select name="type_vente" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <div class="col-1">
+            <label class="etiquette">Type de vente *</label>
+            <select name="type_vente" required class="champ-natif">
                 <option value="Unité">Unité</option>
                 <option value="Vrac">Vrac (au poids)</option>
             </select>
@@ -45,36 +45,36 @@
     </div>
 
     <!-- Description -->
-    <div style="margin-bottom: 15px;">
-        <label style="display: block; margin-bottom: 5px;">Description *</label>
-        <textarea name="description" required rows="3" style="width: 100%; padding: 8px; box-sizing: border-box;"></textarea>
+    <div class="groupe-champ">
+        <label class="etiquette">Description *</label>
+        <textarea name="description" required rows="3" class="champ-natif"></textarea>
     </div>
 
     <!-- Prix HT, TVA et Stock (Côte à côte) -->
-    <div style="margin-bottom: 15px; display: flex; gap: 15px;">
-        <div style="flex: 1;">
-            <label style="display: block; margin-bottom: 5px;">Prix HT (€) *</label>
-            <input type="number" step="0.01" name="prix_ht" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+    <div class="ligne-champs">
+        <div class="col-1">
+            <label class="etiquette">Prix HT (€) *</label>
+            <input type="number" step="0.01" name="prix_ht" required class="champ-natif">
         </div>
-        <div style="flex: 1;">
-            <label style="display: block; margin-bottom: 5px;">TVA (%) *</label>
-            <select name="tva" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <div class="col-1">
+            <label class="etiquette">TVA (%) *</label>
+            <select name="tva" required class="champ-natif">
                 <option value="5.5">5.5 % (Thé/Café)</option>
                 <option value="20">20 % (Accessoires)</option>
             </select>
         </div>
-        <div style="flex: 1;">
-            <label style="display: block; margin-bottom: 5px;">Stock *</label>
-            <input type="number" name="stock" required style="width: 100%; padding: 8px; box-sizing: border-box;">
+        <div class="col-1">
+            <label class="etiquette">Stock *</label>
+            <input type="number" name="stock" required class="champ-natif">
         </div>
     </div>
 
     <!-- Image -->
-    <div style="margin-bottom: 25px;">
-        <label style="display: block; margin-bottom: 5px;">Nom de l'image (ex: photo.webp)</label>
-        <input type="text" name="images" style="width: 100%; padding: 8px; box-sizing: border-box;">
-        <small style="color: gray;">Facultatif. L'image doit se trouver dans le dossier Assets/Images/.</small>
+    <div class="groupe-champ-large">
+        <label class="etiquette">Nom de l'image (ex: photo.webp)</label>
+        <input type="text" name="images" class="champ-natif">
+        <small class="texte-gris">Facultatif. L'image doit se trouver dans le dossier Assets/Images/.</small>
     </div>
 
-    <button type="submit" style="background-color: var(--green); color: white; padding: 10px 20px; border: none; cursor: pointer; width: 100%; font-weight: bold;">ENREGISTRER LE PRODUIT</button>
+    <button type="submit" class="bouton-vert-plein">ENREGISTRER LE PRODUIT</button>
 </form>

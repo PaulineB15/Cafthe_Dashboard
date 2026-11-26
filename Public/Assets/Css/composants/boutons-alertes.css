@@ -1,0 +1,160 @@
+/* Public/Assets/Css/composants/boutons-alertes.css */
+
+/* --- BOUTONS --- */
+.groupe-boutons {
+    display: flex;
+    gap: 10px;
+}
+
+.bouton-or {
+    background-color: var(--gold);
+    color: #1A1A1A;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.bouton-or-plein {
+    background-color: var(--gold);
+    color: #1A1A1A;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.bouton-vert {
+    background-color: var(--green);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.bouton-vert-plein {
+    background-color: var(--green);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 100%;
+}
+
+.bouton-contour {
+    color: var(--text-light);
+    padding: 8px 14px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+/* --- LIENS --- */
+.lien-retour {
+    color: var(--text-light);
+    text-decoration: none;
+}
+
+.lien-annuler {
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    color: gray;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.lien-reinitialiser {
+    display: inline-block;
+    margin-left: 10px;
+    color: gray;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.lien-action-clair {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-right: 12px;
+}
+
+.lien-action-or {
+    color: var(--gold);
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.lien-action-rouge {
+    color: #ff6b6b;
+    text-decoration: none;
+}
+
+/* --- ALERTES --- */
+.alerte-succes {
+    background-color: #2a5a2a;
+    color: #99ff99;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    max-width: 1200px;
+}
+
+.alerte-erreur {
+    background-color: #5a2a2a;
+    color: #ff9999;
+    padding: 12px 15px;
+    border-radius: 6px;
+    margin-bottom: 20px;
+    max-width: 1200px;
+}
+
+/* --- BADGES & COULEURS DE TEXTE --- */
+.badge {
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+.badge-defaut {
+    background-color: #333;
+    color: white;
+}
+
+.badge-attente {
+    background-color: #5a4a2a;
+    color: #ffcc00;
+}
+
+.badge-succes {
+    background-color: #2a5a2a;
+    color: #99ff99;
+}
+
+.badge-danger {
+    background-color: #5a2a2a;
+    color: #ff9999;
+}
+
+.badge-pro {
+    margin-left: 6px;
+    font-size: 0.78em;
+    color: var(--gold);
+}
+
+.texte-gris { color: gray; }
+.texte-or { color: var(--gold); }
+.texte-vert-clair { color: #99ff99; }
+.texte-jaune { color: #ffcc00; }
+.texte-rouge { color: #ff4c4c; }
+.texte-gras { font-weight: bold; }

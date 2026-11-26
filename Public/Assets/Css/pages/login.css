@@ -1,0 +1,45 @@
+/* Public/Assets/Css/pages/login.css */
+
+.page-connexion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.boite-connexion {
+    background-color: var(--bg-sidebar);
+    padding: 35px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid #333;
+    box-sizing: border-box;
+}
+
+.connexion-entete {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.connexion-logo {
+    max-width: 160px;
+    height: auto;
+}
+
+.connexion-titre {
+    color: var(--gold);
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 1.5em;
+    margin-top: 15px;
+}
+
+.connexion-sous-titre {
+    color: gray;
+    font-size: 0.9em;
+    margin: 5px 0 0 0;
+}
+
+.boite-connexion .champ-sombre {
+    padding: 10px;
+}

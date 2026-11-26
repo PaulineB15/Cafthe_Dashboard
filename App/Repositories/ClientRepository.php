@@ -17,13 +17,17 @@ class ClientRepository
             $sql = "SELECT ID_CLIENT, NOM_CLIENT, PRENOM_CLIENT, ADRESSE_FACTURATION, CP_FACTURATION, VILLE_FACTURATION,
                            ADRESSE_LIVRAISON, CP_LIVRAISON, VILLE_LIVRAISON, TEL_CLIENT, EMAIL_CLIENT, ID_EMPLOYE
                     FROM client
-                    WHERE NOM_CLIENT LIKE :recherche
-                       OR PRENOM_CLIENT LIKE :recherche
-                       OR EMAIL_CLIENT LIKE :recherche
-                       OR VILLE_FACTURATION LIKE :recherche
+                    WHERE NOM_CLIENT LIKE :rechercheNom
+                       OR PRENOM_CLIENT LIKE :recherchePrenom
+                       OR EMAIL_CLIENT LIKE :rechercheEmail
                     ORDER BY ID_CLIENT DESC";
             $stmt = $this->db->prepare($sql);
-            $stmt->execute(['recherche' => '%' . $recherche . '%']);
+            $motCle = '%' . $recherche . '%';
+            $stmt->execute([
+                'rechercheNom'    => $motCle,
+                'recherchePrenom' => $motCle,
+                'rechercheEmail'  => $motCle
+            ]);
         } else {
             $sql = "SELECT ID_CLIENT, NOM_CLIENT, PRENOM_CLIENT, ADRESSE_FACTURATION, CP_FACTURATION, VILLE_FACTURATION,
                            ADRESSE_LIVRAISON, CP_LIVRAISON, VILLE_LIVRAISON, TEL_CLIENT, EMAIL_CLIENT, ID_EMPLOYE

@@ -1,0 +1,99 @@
+/* Public/Assets/Css/composants/formulaires.css */
+
+.formulaire-carte {
+    flex: 1;
+    min-width: 320px;
+    max-width: 420px;
+    background-color: var(--bg-sidebar);
+    padding: 25px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.formulaire-profil {
+    flex: 1;
+    min-width: 320px;
+    background-color: var(--bg-sidebar);
+    padding: 25px;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.formulaire-produit {
+    background-color: var(--bg-sidebar);
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+}
+
+.groupe-champ {
+    margin-bottom: 14px;
+}
+
+.groupe-champ-large {
+    margin-bottom: 22px;
+}
+
+.ligne-champs {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+}
+
+.col-1 { flex: 1; }
+.col-2 { flex: 2; }
+
+.etiquette {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
+
+.etiquette-grise {
+    display: block;
+    margin-bottom: 5px;
+    color: gray;
+    font-size: 0.9em;
+}
+
+.champ-sombre {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: #333;
+    color: white;
+    border: 1px solid #555;
+    border-radius: 4px;
+}
+
+/* Champs clairs natifs (conservés pour Creer.php et Editer.php) */
+.champ-natif {
+    width: 100%;
+    padding: 8px;
+    box-sizing: border-box;
+}
+
+/* Barre de filtres & recherche */
+.barre-filtres {
+    background-color: var(--bg-sidebar);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+.entete-recherche {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.formulaire-recherche {
+    display: flex;
+    gap: 8px;
+}

@@ -1,0 +1,49 @@
+/* Public/Assets/Css/pages/specifiques.css */
+
+/* Accueil.php : emplacement graphique et carte alertes stock */
+.zone-graphique {
+    background-color: var(--bg-sidebar);
+    padding: 20px;
+    border-radius: 8px;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #444;
+}
+
+.carte-alerte-stock {
+    background-color: var(--bg-sidebar);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #ff4c4c;
+}
+
+.titre-alerte-stock {
+    color: #ff4c4c;
+    margin-top: 0;
+}
+
+/* Stock.php : miniatures produits */
+.miniature-produit {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+.miniature-vide {
+    width: 45px;
+    height: 45px;
+    background-color: #333;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #888;
+}
+
+.description-courte {
+    color: #aaa;
+}
