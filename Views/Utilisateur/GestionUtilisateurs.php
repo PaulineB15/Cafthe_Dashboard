@@ -62,7 +62,7 @@
             </div>
         <?php endif; ?>
 
-        <button type="submit" class="bouton-or-plein">
+        <button type="submit" class="bouton-vert-plein">
             <?= $estEdition ? 'ENREGISTRER LES MODIFICATIONS' : 'CRÉER LE COMPTE' ?>
         </button>
 

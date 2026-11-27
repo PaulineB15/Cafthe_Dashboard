@@ -77,7 +77,7 @@
             </div>
         </div>
 
-        <button type="submit" class="bouton-or-plein">
+        <button type="submit" class="bouton-vert-plein">
             <?= $estEdition ? 'ENREGISTRER LES MODIFICATIONS' : 'AJOUTER LE CLIENT' ?>
         </button>
 

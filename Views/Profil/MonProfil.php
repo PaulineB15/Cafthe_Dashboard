@@ -37,7 +37,7 @@
             <input type="email" id="email" name="email" value="<?= htmlspecialchars($employe->getEmail(), ENT_QUOTES, 'UTF-8') ?>" required class="champ-sombre">
         </div>
 
-        <button type="submit" class="bouton-or-plein">
+        <button type="submit" class="bouton-vert-plein">
             ENREGISTRER LES INFOS
         </button>
     </form>

@@ -43,7 +43,7 @@
                 <input type="password" id="mot_de_passe" name="mot_de_passe" required class="champ-sombre">
             </div>
 
-            <button type="submit" class="bouton-or-plein">
+            <button type="submit" class="bouton-vert-plein">
                 SE CONNECTER
             </button>
 

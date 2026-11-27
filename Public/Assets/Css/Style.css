@@ -16,16 +16,32 @@
     --text-light: #F5F5F0;
     --gold: #C5A059;
     --green: #4A5D4E;
+    --green-hover: #3b4b3e;
+    --sand-text: #D9C5B2;
+    --font-title: 'Tenor Sans', sans-serif;
+    --font-text: 'Montserrat', sans-serif;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-text);
     background-color: var(--bg-dark);
     color: var(--text-light);
     margin: 0;
     padding: 0;
     display: flex;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Force les boutons et champs à utiliser Montserrat */
+input, button, textarea, select {
+    font-family: var(--font-text);
+}
+
+/* Titres en Tenor Sans comme sur le site CafThé */
+h1, h2, h3, h4 {
+    font-family: var(--font-title);
+    font-weight: 400;
 }
 
 /* --- MENU LATÉRAL (SIDEBAR) --- */
@@ -100,15 +116,23 @@ body {
     transition: color 0.3s ease;
 }
 
+/* Effet au survol de la souris */
 .nav-link:hover {
-    background-color: #333;
-    color: var(--gold, #d4af37);
+    background-color: var(--green);
+    color: var(--text-light);
 }
 
+/* Effet quand on est sur la page en question (actif) */
 .nav-link.active {
-    background-color: #333;
-    color: var(--gold, #d4af37);
+    background-color: var(--green);
+    color: var(--text-light);
     font-weight: bold;
+}
+
+/* Passe aussi l'icône en clair sur fond vert pour garder un bon contraste */
+.nav-link:hover i,
+.nav-link.active i {
+    color: var(--text-light);
 }
 
 .sidebar-bas {

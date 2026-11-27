@@ -6,58 +6,75 @@
     gap: 10px;
 }
 
-.bouton-or {
+.bouton-or,
+.bouton-or-plein {
     background-color: var(--gold);
-    color: #1A1A1A;
-    padding: 8px 14px;
-    border: none;
+    color: var(--bg-dark);
+    padding: 9px 16px;
+    border: 1px solid transparent;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
     font-size: 0.9em;
+    letter-spacing: 0.5px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .bouton-or-plein {
-    background-color: var(--gold);
-    color: #1A1A1A;
-    padding: 10px 16px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+    padding: 11px 16px;
     width: 100%;
 }
 
-.bouton-vert {
+.bouton-or:hover,
+.bouton-or-plein:hover {
+    background-color: #d4b26f;
+    transform: translateY(-2px);
+}
+
+/* Boutons verts alignés sur .btn-primaire de CafThé */
+.bouton-vert,
+.bouton-vert-plein {
     background-color: var(--green);
-    color: white;
+    color: var(--text-light);
     padding: 10px 20px;
-    border: none;
+    border: 1px solid transparent;
     border-radius: 4px;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 0.9em;
+    letter-spacing: 1px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .bouton-vert-plein {
-    background-color: var(--green);
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
+    padding: 11px 20px;
     width: 100%;
 }
 
+.bouton-vert:hover,
+.bouton-vert-plein:hover {
+    background-color: var(--green-hover);
+    border-color: var(--gold);
+    transform: translateY(-2px);
+}
+
+/* Bouton contour aligné sur .btn-secondaire de CafThé */
 .bouton-contour {
-    color: var(--text-light);
+    background-color: transparent;
+    color: var(--gold);
     padding: 8px 14px;
-    border: 1px solid #555;
+    border: 1px solid var(--gold);
     border-radius: 4px;
     text-decoration: none;
     font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.bouton-contour:hover {
+    background-color: var(--gold);
+    color: var(--bg-dark);
 }
 
 /* --- LIENS --- */
