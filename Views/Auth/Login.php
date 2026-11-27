@@ -1,4 +1,5 @@
-<!-- Views/Auth/Login.php -->
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -7,6 +8,7 @@
     <title>Connexion - Dashboard CafThé</title>
     <!-- Liaison du fichier CSS externe -->
     <link rel="stylesheet" href="/Cafthe_Dashboard/Public/Assets/Css/Style.css?v=2">
+    <link rel="stylesheet" href="/Cafthe_Dashboard/Public/Assets/Css/responsive.css?v=1">
     <!-- Police d'icônes FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>

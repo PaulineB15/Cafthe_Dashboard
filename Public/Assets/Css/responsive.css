@@ -1,0 +1,280 @@
+/* Public/Assets/Css/responsive.css */
+
+/* Empêche les tableaux larges de casser la mise en page Flexbox */
+.main-content {
+    min-width: 0;
+}
+
+/* Bouton burger masqué par défaut sur desktop et tablette */
+.bouton-burger {
+    display: none;
+}
+
+/* =========================================================
+   TABLETTE (≤ 1024px)
+   ========================================================= */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 210px;
+        padding: 15px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    /* Les 4 KPI passent en grille 2x2 */
+    .ligne-kpi {
+        flex-wrap: wrap;
+    }
+
+    .carte-kpi {
+        flex: 1 1 calc(50% - 20px);
+    }
+
+    /* Les tableaux clients et utilisateurs prennent toute la largeur */
+    .carte-tableau-clients,
+    .carte-tableau-utilisateurs {
+        min-width: 100%;
+    }
+
+    /* Défilement horizontal sur les tableaux larges (ex: Stock) */
+    .tableau {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* =========================================================
+   MOBILE (≤ 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+    /* Le menu passe au-dessus du contenu */
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #333;
+        padding: 15px;
+        position: relative;
+    }
+
+    /* Affichage du bouton burger en haut à droite */
+    .bouton-burger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background-color: #333;
+        color: var(--gold);
+        border: 1px solid #444;
+        border-radius: 5px;
+        width: 42px;
+        height: 42px;
+        font-size: 1.2em;
+        cursor: pointer;
+    }
+
+    .logo-container {
+        margin-bottom: 0;
+        text-align: left;
+        padding-right: 55px;
+    }
+
+    .logo-sidebar {
+        max-width: 110px;
+    }
+
+    /* Menu masqué par défaut sur mobile */
+    .nav-menu,
+    .sidebar-bas {
+        display: none;
+    }
+
+    /* Menu visible quand la classe .ouvert est ajoutée par menu-burger.js */
+    .sidebar.ouvert .nav-menu {
+        display: block;
+        margin-top: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #333;
+    }
+
+    .sidebar.ouvert .nav-menu ul {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .sidebar.ouvert .nav-menu li {
+        margin-bottom: 0;
+    }
+
+    .sidebar.ouvert .sidebar-bas {
+        display: flex;
+        gap: 10px;
+        margin-top: 15px;
+        padding-top: 15px;
+    }
+
+    .sidebar-bas .nav-link,
+    .sidebar-bas .logout-link {
+        flex: 1;
+        text-align: center;
+        margin-bottom: 0;
+        font-size: 0.9em;
+    }
+
+    .main-content {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* En-têtes et boutons empilés proprement */
+    .entete-page-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .groupe-boutons {
+        width: 100%;
+        flex-wrap: wrap;
+    }
+
+    /* Toutes les grilles passent sur 1 colonne */
+    .ligne-kpi,
+    .ligne-cartes,
+    .grille-deux-colonnes,
+    .grille-profil {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .carte-kpi,
+    .carte-large,
+    .carte-tableau-clients,
+    .carte-tableau-utilisateurs,
+    .colonne-principale {
+        min-width: 100%;
+        width: 100%;
+    }
+
+    /* Formulaires et filtres en pleine largeur */
+    .formulaire-carte,
+    .formulaire-profil,
+    .formulaire-produit {
+        min-width: 100%;
+        max-width: 100%;
+        padding: 18px;
+    }
+
+    .ligne-champs {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .barre-filtres {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .entete-recherche {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .formulaire-recherche {
+        width: 100%;
+    }
+
+
+
+/* Page de connexion */
+    .page-connexion {
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    .boite-connexion {
+        padding: 25px 20px;
+    }
+
+    /* --- TABLEAUX EN CARTES SUR MOBILE --- */
+    .tableau,
+    .tableau tbody,
+    .tableau tr,
+    .tableau td {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        overflow-wrap: anywhere; /* Pour texte qui revient à la ligne si besoin (ex: email) */
+    }
+
+    /* On masque l'en-tête classique du tableau */
+    .tableau thead {
+        display: none;
+    }
+
+    /* Annule le scroll horizontal hérité de la tablette */
+    .tableau {
+        overflow-x: visible;
+        white-space: normal;
+    }
+
+    /* Chaque ligne devient une carte */
+    .tableau tbody tr {
+        background-color: #1f1f1f;
+        border: 1px solid #333;
+        border-left: 3px solid var(--gold);
+        border-radius: 6px;
+        margin-bottom: 14px;
+        padding: 10px 12px;
+    }
+
+    /* Chaque cellule : libellé à gauche, valeur à droite */
+    .tableau td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 7px 0;
+        border-bottom: 1px solid #2c2c2c;
+        text-align: right;
+    }
+
+    .tableau td:last-child {
+        border-bottom: none;
+    }
+
+    /* Affiche le nom de la colonne depuis l'attribut data-label */
+    .tableau td::before {
+        content: attr(data-label);
+        font-weight: bold;
+        color: var(--gold);
+        text-transform: uppercase;
+        font-size: 0.8em;
+        text-align: left;
+        flex-shrink: 0;
+    }
+
+    /* Cas d'un tableau vide ("Aucune commande...") */
+    .tableau td.tableau-vide {
+        display: block;
+        text-align: center;
+        border-bottom: none;
+    }
+
+    .tableau td.tableau-vide::before {
+        content: none;
+    }
+}
+
+
+
+}

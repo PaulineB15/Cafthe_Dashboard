@@ -15,7 +15,6 @@ $roleEmploye = $employeConnecte['role'] ?? 'Vendeur';
 ?>
 
 
-<!-- Views/Layouts/Main.php -->
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -24,13 +23,21 @@ $roleEmploye = $employeConnecte['role'] ?? 'Vendeur';
     <title>Dashboard CafThé</title>
     <!-- LIAISON DU FICHIER CSS EXTERNE -->
     <link rel="stylesheet" href="/Cafthe_Dashboard/Public/Assets/Css/Style.css?v=2">
+    <link rel="stylesheet" href="/Cafthe_Dashboard/Public/Assets/Css/responsive.css?v=2">
     <!-- Police d'icônes FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Script du menu burger -->
+    <script src="/Cafthe_Dashboard/Public/Assets/Js/menu-burger.js" defer></script>
 </head>
 <body>
     
     <!-- Menu latéral -->
     <aside class="sidebar">
+
+        <!-- Bouton menu burger (visible uniquement sur mobile) -->
+        <button type="button" id="bouton-burger" class="bouton-burger" aria-label="Ouvrir le menu" aria-expanded="false">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         
         <!-- En-tête du menu (Logo + Employé connecté + Rôle) -->
         <div class="logo-container">

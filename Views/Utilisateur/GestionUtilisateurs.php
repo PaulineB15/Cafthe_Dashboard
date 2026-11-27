@@ -87,10 +87,10 @@
             <tbody>
                 <?php foreach ($employes as $emp): ?>
                     <tr>
-                        <td><?= htmlspecialchars($emp->getPrenom() . ' ' . $emp->getNom(), ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($emp->getEmail(), ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars($emp->getRole(), ENT_QUOTES, 'UTF-8') ?></td>
-                        <td class="colonne-actions">
+                        <td data-label="Nom complet"><?= htmlspecialchars($emp->getPrenom() . ' ' . $emp->getNom(), ENT_QUOTES, 'UTF-8') ?></td>
+                        <td data-label="Email"><?= htmlspecialchars($emp->getEmail(), ENT_QUOTES, 'UTF-8') ?></td>
+                        <td data-label="Rôle"><?= htmlspecialchars($emp->getRole(), ENT_QUOTES, 'UTF-8') ?></td>
+                        <td data-label="Actions" class="colonne-actions">
                             <a href="/Cafthe_Dashboard/Public/utilisateurs/editer?id=<?= (int)$emp->getId() ?>" class="lien-action-or">
                                 <i class="fa-solid fa-pen"></i> Modifier
                             </a>
