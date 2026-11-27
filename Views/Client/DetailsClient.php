@@ -69,11 +69,11 @@
             <?php else: ?>
                 <?php foreach ($commandes as $cmd): ?>
                     <tr>
-                        <td>CMD-<?= (int)$cmd['ID_COMMANDE'] ?></td>
-                        <td><?= htmlspecialchars((string)($cmd['DATE_COMMANDE'] ?? '-'), ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= htmlspecialchars((string)($cmd['MODE_COMMANDE'] ?? 'Standard'), ENT_QUOTES, 'UTF-8') ?></td>
-                        <td><?= number_format((float)$cmd['MONTANT_TOTAL'], 2, ',', ' ') ?> €</td>
-                        <td><?= htmlspecialchars((string)($cmd['STATUT_COMMANDE'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
+                        <td data-label="N° Commande">CMD-<?= (int)$cmd['ID_COMMANDE'] ?></td>
+                        <td data-label="Date"><?= htmlspecialchars((string)($cmd['DATE_COMMANDE'] ?? '-'), ENT_QUOTES, 'UTF-8') ?></td>
+                        <td data-label="Canal"><?= htmlspecialchars((string)($cmd['MODE_COMMANDE'] ?? 'Standard'), ENT_QUOTES, 'UTF-8') ?></td>
+                        <td data-label="Montant"><?= number_format((float)$cmd['MONTANT_TOTAL'], 2, ',', ' ') ?> €</td>
+                        <td data-label="Statut"><?= htmlspecialchars((string)($cmd['STATUT_COMMANDE'] ?? ''), ENT_QUOTES, 'UTF-8') ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php endif; ?>

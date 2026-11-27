@@ -51,7 +51,7 @@
         <?php foreach ($produits as $produit): ?>
         <tr>
             <!-- IMAGE -->
-            <td>
+            <td data-label="Image">
                 <?php if ($produit->getImages()): ?>
                     <img src="/Cafthe_Dashboard/Public/Assets/Images/<?= htmlspecialchars($produit->getImages()) ?>" alt="<?= htmlspecialchars($produit->getNom()) ?>" class="miniature-produit">
                 <?php else: ?>
@@ -60,41 +60,41 @@
             </td>
             
             <!-- SKU -->
-            <td>REF-<?= htmlspecialchars((string)$produit->getId()) ?></td>
+            <td data-label="SKU">REF-<?= htmlspecialchars((string)$produit->getId()) ?></td>
             
             <!-- NOM -->
-            <td class="texte-gras"><?= htmlspecialchars($produit->getNom()) ?></td>
+            <td data-label="Nom" class="texte-gras"><?= htmlspecialchars($produit->getNom()) ?></td>
 
             <!-- CATÉGORIE -->
-            <td><?= htmlspecialchars($produit->getCategorie()) ?></td>
+            <td data-label="Catégorie"><?= htmlspecialchars($produit->getCategorie()) ?></td>
 
             <!-- TYPE (Grains, Moulu, etc.) -->
-            <td><?= htmlspecialchars((string)$produit->getType()) ?></td>
+            <td data-label="Type"><?= htmlspecialchars((string)$produit->getType()) ?></td>
 
             <!-- DESCRIPTION -->
-            <td class="description-courte"><?= htmlspecialchars(substr((string)$produit->getDescription(), 0, 30)) ?>...</td>
+            <td data-label="Description" class="description-courte"><?= htmlspecialchars(substr((string)$produit->getDescription(), 0, 30)) ?>...</td>
             
             <!-- TYPE DE VENTE -->
-            <td><?= htmlspecialchars((string)$produit->getTypeVente()) ?></td>
+            <td data-label="Type vente"><?= htmlspecialchars((string)$produit->getTypeVente()) ?></td>
             
             <!-- PRIX HT -->
-            <td><?= number_format((float)$produit->getPrixHt(), 2, ',', ' ') ?> €</td>
+            <td data-label="Prix HT"><?= number_format((float)$produit->getPrixHt(), 2, ',', ' ') ?> €</td>
             
             <!-- TVA -->
-            <td><?= number_format((float)$produit->getTva(), 1, ',', ' ') ?> %</td>
+            <td data-label="TVA"><?= number_format((float)$produit->getTva(), 1, ',', ' ') ?> %</td>
             
             <!-- PRIX TTC -->
-            <td><?= number_format((float)$produit->getPrixTtc(), 2, ',', ' ') ?> €</td>
+            <td data-label="Prix TTC"><?= number_format((float)$produit->getPrixTtc(), 2, ',', ' ') ?> €</td>
             
             <!-- STOCK -->
-            <td>
+            <td data-label="Stock">
                 <span class="badge <?= $produit->getStock() < 15 ? 'badge-danger' : 'badge-succes' ?>">
                     <?= htmlspecialchars((string)$produit->getStock()) ?>
                 </span>
             </td>
             
             <!-- ACTIONS -->
-            <td class="colonne-actions">
+            <td data-label="Actions" class="colonne-actions">
                 <a href="/Cafthe_Dashboard/Public/produits/editer?id=<?= $produit->getId() ?>" class="lien-action-or">Modifier</a>
                 <a href="/Cafthe_Dashboard/Public/produits/supprimer?id=<?= $produit->getId() ?>" onclick="return confirm('Êtes-vous sûr ?');" class="lien-action-rouge">Supprimer</a>
             </td>

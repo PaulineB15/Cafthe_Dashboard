@@ -1,4 +1,5 @@
-<!-- Views/Dashboard/Accueil.php -->
+<!-- AFFICHAGE DU DASHBOARD -->
+
 <div class="entete-page">
     <h1 class="titre-page">ACCUEIL</h1>
 </div>
@@ -65,10 +66,10 @@
                     <?php else: ?>
                         <?php foreach ($dernieresCommandes as $cmd): ?>
                         <tr>
-                            <td>CMD-<?= htmlspecialchars((string)$cmd['ID_COMMANDE']) ?></td>
-                            <td><?= htmlspecialchars($cmd['NOM_CLIENT'] . ' ' . $cmd['PRENOM_CLIENT']) ?></td>
-                            <td><?= number_format((float)$cmd['MONTANT_TOTAL'], 2, ',', ' ') ?> €</td>
-                            <td>
+                            <td data-label="N°">CMD-<?= htmlspecialchars((string)$cmd['ID_COMMANDE']) ?></td>
+                            <td data-label="Client"><?= htmlspecialchars($cmd['NOM_CLIENT'] . ' ' . $cmd['PRENOM_CLIENT']) ?></td>
+                            <td data-label="Montant"><?= number_format((float)$cmd['MONTANT_TOTAL'], 2, ',', ' ') ?> €</td>
+                            <td data-label="Statut">
                                 <!-- Changement de couleur selon le statut -->
                                 <?php 
                                     $classeStatut = 'badge-defaut';

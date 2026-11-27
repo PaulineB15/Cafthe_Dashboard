@@ -109,17 +109,17 @@
                 <?php if (empty($clients)): ?>
                     <tr><td colspan="4" class="tableau-vide">Aucun client trouvé.</td></tr>
                 <?php else: ?>
-                    <?php foreach ($clients as$c): ?>
+                    <?php foreach ($clients as $c): ?>
                         <tr>
-                            <td>
-                                <?= htmlspecialchars($c->getPrenom() . ' ' .$c->getNom(), ENT_QUOTES, 'UTF-8') ?>
+                            <td data-label="Client">
+                                <?= htmlspecialchars($c->getPrenom() . ' ' . $c->getNom(), ENT_QUOTES, 'UTF-8') ?>
                                 <?php if ($c->getIdEmploye() !== null): ?>
                                     <span class="badge-pro">[Pro]</span>
                                 <?php endif; ?>
                             </td>
-                            <td><?= htmlspecialchars($c->getEmail(), ENT_QUOTES, 'UTF-8') ?></td>
-                            <td><?= htmlspecialchars($c->getVilleFacturation(), ENT_QUOTES, 'UTF-8') ?></td>
-                            <td class="colonne-actions">
+                            <td data-label="Email"><?= htmlspecialchars($c->getEmail(), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td data-label="Ville"><?= htmlspecialchars($c->getVilleFacturation(), ENT_QUOTES, 'UTF-8') ?></td>
+                            <td data-label="Actions" class="colonne-actions">
                                 <a href="/Cafthe_Dashboard/Public/clients/details?id=<?= (int)$c->getId() ?>" class="lien-action-clair">
                                     <i class="fa-solid fa-eye"></i> Fiche
                                 </a>
